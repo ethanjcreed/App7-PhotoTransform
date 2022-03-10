@@ -42,10 +42,9 @@
  <script>
   var docMod = document.lastModified; // gets last modified date and time of the index.html file
   console.log("This file last modified  " + docMod); // displays last modified date and time in the javascipt browser console 
-
+  console.log("This is the debugging console"); //this will display a message on the javascript debugging console (press Ctrl + Shift + I to open console)
 /* detectVerticalSquash & drawImageIOSFix = are functions that are critical due to a flaw in the iPhone camera software that squishes any photos displayed on an HTML5 canvas element. https://github.com/stomita/ios-imagefile-megapixel
 */
- /* this section of code sets the ratio for teh image so that it appears properly */
  function detectVerticalSquash(img) {
   var iw = img.naturalWidth, ih = img.naturalHeight;
   var canvas = document.createElement('canvas');
@@ -77,7 +76,6 @@
  }
 
 /* window.onload necessary to keep javascripts from running before the app gets a chance to load entirely. */
-/* this code allows you to upload an image to the site*/
  window.onload = function() {
   var fileInput = document.getElementById('fileInput');
   var messageDisplayArea = document.getElementById('messageDisplayArea');
@@ -103,6 +101,7 @@
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+          
          var secondCanvas = document.getElementById('secondCanvas'); //this is the code for the second canvas
          var secondContext = secondCanvas.getContext("2d"); //this is the context for the second canvas
          var imageData= context.getImageData(0,0,600,500); //this gets the context for the image
@@ -115,9 +114,7 @@
         }
           
          secondContext.putImageData(imageData,0,0); //this will apply all functions to the second canvas
-          
-          
-          
+       
         } // end of img.onload
         
         img.src = reader.result;
@@ -142,28 +139,31 @@
     <div data-role="content">	
       <h2>Push button to take picture.</h2>
       <div>
+       <!--this allows for a file to upload-->
         Press orange button to create or choose image file:
-        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
+        <input type="file" id="fileInput" STYLE="background-color: #FF6600;"
       </div>
       <div id="messageDisplayArea"></div>
       
-      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--size of canvas-->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("Original image will go here", 10, 20);
+        var canvas = document.getElementById('myCanvas'); //calls the canvas
+        var context = canvas.getContext("2d"); //gives the context for the canvas
+        context.font = '20pt Calibri'; //size and font that will appear
+        context.fillStyle = "black"; //color of the font
+        context.fillText("Original image will go here", 10, 20); //oordinates of the image
       </script>
-     
-     <canvas id="secondCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script> /* This is the second canvas for the altered image to go into*/
+      
+      <!--this is the new code for the second canvas-->
+      <canvas id="secondCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <script> 
         var secondCanvas = document.getElementById('secondCanvas');
-        var context = secondCanvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("New Image Goes Here", 10, 20);
+        var secondContext = secondCanvas.getContext("2d");
+        secondContext.font = '20pt Calibri';
+        secondContext.fillStyle = "black";
+        secondContext.fillText("New Image Goes Here", 10,20);
       </script>
+      <!--end of code for second canvas-->
 
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
