@@ -14,7 +14,7 @@
  
   Authors in chronological order of contribution:
   Author 1: Timothy E. Riedel
-  Author 2: ?????????
+  Author 2: Ethan Creed
   
   References:
   http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
@@ -24,7 +24,7 @@
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-  blah, blah, blah,
+  To modify an uploaded photo.
  
   Known Issues:
   blah, blah, blah, blah
@@ -45,6 +45,7 @@
 
 /* detectVerticalSquash & drawImageIOSFix = are functions that are critical due to a flaw in the iPhone camera software that squishes any photos displayed on an HTML5 canvas element. https://github.com/stomita/ios-imagefile-megapixel
 */
+ /* this section of code sets the ratio for teh image so that it appears properly */
  function detectVerticalSquash(img) {
   var iw = img.naturalWidth, ih = img.naturalHeight;
   var canvas = document.createElement('canvas');
@@ -141,6 +142,15 @@
         context.font = '20pt Calibri';
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
+      </script>
+     
+     <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <script> /* This is the second canvas for the altered image to go into*/
+        var canvas2 = document.getElementById('myCanvas2');
+        var context = canvas2.getContext("2d");
+        context.font = '20pt Calibri';
+        context.fillStyle = "black";
+        context.fillText("New Image Goes Here", 10, 20);
       </script>
 
     </div><!-- /content -->
