@@ -77,6 +77,7 @@
  }
 
 /* window.onload necessary to keep javascripts from running before the app gets a chance to load entirely. */
+/* this code allows you to upload an image to the site*/
  window.onload = function() {
   var fileInput = document.getElementById('fileInput');
   var messageDisplayArea = document.getElementById('messageDisplayArea');
@@ -102,7 +103,18 @@
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
+         var secondCanvas = document.getElementById('secondCanvas'); //this is the code for the second canvas
+         var secondContext = secondCanvas.getContext("2d"); //this is the context for the second canvas
+         var imageData= context.getImageData(0,0,600,500); //this gets the context for the image
+         var data = imageData.data; //this gets the pixel data of the canvas
+         
+         //this code changes the image to blue
+         for(var i = 0, n = data.length; i < n; i += 4){
+            data[i] = 0; //this sets the red insensity to 0 (red will not show)
+            data[i + 1] = 0; //this sets the green intensity to 0 (green will not show)
+        }
           
+         secondContext.putImageData(imageData,0,0); //this will apply all functions to the second canvas
           
           
           
@@ -144,10 +156,10 @@
         context.fillText("Original image will go here", 10, 20);
       </script>
      
-     <canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+     <canvas id="secondCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This is the second canvas for the altered image to go into*/
-        var canvas2 = document.getElementById('myCanvas2');
-        var context = canvas2.getContext("2d");
+        var secondCanvas = document.getElementById('secondCanvas');
+        var context = secondCanvas.getContext("2d");
         context.font = '20pt Calibri';
         context.fillStyle = "black";
         context.fillText("New Image Goes Here", 10, 20);
